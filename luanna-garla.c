@@ -198,15 +198,26 @@ p_no remover(p_no raiz, int chave)
     return raiz;
 }
 
-//Objetivo Um: Implementação de métodos que calculem a altura (total) e a altura negra de uma BST rubro-negra.
+// Objetivo Um: Implementação de métodos que calculem a altura (total) e a altura negra de uma BST rubro-negra.
 int altura_total(p_no raiz)
 {
-   
+    if (raiz == NULL)
+        return -1;
+
+    int altura_esq = altura_total(raiz->esq);
+    int altura_dir = altura_total(raiz->dir);
+    return 1 + (altura_esq > altura_dir ? altura_esq : altura_dir);
 }
 
 int altura_negra(p_no raiz)
 {
-   
+    if (raiz == NULL)
+        return 0;
+
+    int altura_esq = altura_negra(raiz->esq);
+    int altura_dir = altura_negra(raiz->dir);
+    int altura_sub = altura_esq > altura_dir ? altura_esq : altura_dir;
+    return (raiz->cor == PRETO ? 1 : 0) + altura_sub;
 }
 
 int main()
@@ -234,6 +245,10 @@ int main()
         printf("%d ", para_remover[i]);
         raiz = remover(raiz, para_remover[i]);
     }
+
+    // Objetivo 01
+    printf("\n\nAltura total da árvore: %d", altura_total(raiz));
+    printf("\nAltura negra da árvore: %d\n", altura_negra(raiz));
 
     return 0;
 }
