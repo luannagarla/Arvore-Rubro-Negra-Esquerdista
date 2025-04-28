@@ -165,3 +165,30 @@
          raiz->cor = PRETO;        // raiz sempre preta
      return raiz;
  }
+ 
+ 
+int main() {
+    p_no raiz = NULL; 
+
+    // Inserção
+    int elementos[] = {29, 8, 20, 3, 9, 21, 02, 13};
+    int n = sizeof(elementos) / sizeof(elementos[0]);
+
+    printf("Inserindo elementos: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", elementos[i]);
+        raiz = inserir(raiz, elementos[i]);
+    }
+  
+    // Remoção
+    int para_remover[] = {9, 13};
+    int m = sizeof(para_remover) / sizeof(para_remover[0]);
+
+    printf("\nRemovendo elementos: ");
+    for (int i = 0; i < m; i++) {
+        printf("%d ", para_remover[i]);
+        raiz = remover(raiz, para_remover[i]);
+    }
+  
+    return 0;
+}
