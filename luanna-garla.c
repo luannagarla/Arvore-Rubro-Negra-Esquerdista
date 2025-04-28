@@ -221,14 +221,27 @@ int altura_negra(p_no raiz)
 }
 
 // Objetivo dois: Desenvolvimento de um método que retorne a quantidade de nós pretos de uma árvore rubro-negra.
-int total_nos_pretos(p_no raiz) {
+int total_nos_pretos(p_no raiz)
+{
     if (raiz == NULL)
         return 0;
 
     int total_esq = total_nos_pretos(raiz->esq);
     int total_dir = total_nos_pretos(raiz->dir);
-    
+
     return (raiz->cor == PRETO ? 1 : 0) + total_esq + total_dir;
+}
+
+// Objetivo três: Escrita de um método que retorne a quantidade de nós vermelhos de uma dada árvore rubro-negra.
+int total_nos_vermelhos(p_no raiz)
+{
+    if (raiz == NULL)
+        return 0;
+
+    int total_esq = total_nos_vermelhos(raiz->esq);
+    int total_dir = total_nos_vermelhos(raiz->dir);
+
+    return (raiz->cor == VERMELHO ? 1 : 0) + total_esq + total_dir;
 }
 
 int main()
@@ -259,10 +272,13 @@ int main()
 
     // Objetivo 01
     printf("\n\nAltura total da árvore: %d", altura_total(raiz));
-    printf("\nAltura negra da árvore: %d\n", altura_negra(raiz));
+    printf("\nAltura negra da árvore: %d", altura_negra(raiz));
 
     // Objetivo 02
     printf("\n\nTotal de nós pretos: %d", total_nos_pretos(raiz));
+
+    // Objetivo 03
+    printf("\n\nTotal de nós vermelhos: %d", total_nos_vermelhos(raiz));
 
     return 0;
 }
